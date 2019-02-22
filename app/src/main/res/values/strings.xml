@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Assignment2</string>
+    <string name="first_name_text">First Name:</string>
+    <string name="first_name_edit">First Name</string>
+    <string name="last_name_text">Last Name:</string>
+    <string name="last_name_edit">Last Name</string>
+    <string name="nick_name_text">Nick Name:</string>
+    <string name="nick_name_edit">Nick Name</string>
+    <string name="age_text">Age:</string>
+    <string name="age_edit">Age</string>
+    <string name="enter_your_information_then_take_a_quiz">Enter Your Information then Take a QUIZ!!</string>
+</resources>
