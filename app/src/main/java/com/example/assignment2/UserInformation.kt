@@ -22,10 +22,8 @@ class UserInformation {
     constructor(context : Context) {
         userFile = File(context.filesDir, USERFILENAME)
         userFile.createNewFile()
-        Log.i("MEG", "HERE?")
         if (userFile.readBytes().isNotEmpty()) {
             // what if readText is not in JSON format?
-            Log.i("meg", "DID I MAKE IT HERE?")
             userInfo = JSONObject(userFile.readText())
             firstName = userInfo.get(FIRSTNAMETAG).toString()
             lastName = userInfo.get(LASTNAMETAG).toString()
@@ -33,7 +31,6 @@ class UserInformation {
             age = userInfo.get(AGETAG).toString()
         }
         else {
-            Log.i("meg", "ELSE")
             userInfo = JSONObject()
             firstName = ""
             lastName = ""
