@@ -10,8 +10,14 @@
     <Button
             android:text="@string/back"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:id="@+id/Back_Button" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="308dp"
-            android:layout_marginStart="145dp"/>
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="412dp"
+            android:layout_marginStart="160dp"/>
+    <fragment
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:name="com.example.assignment2.QuizQuestion1"
+            android:id="@+id/fragment"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="144dp" app:layout_constraintEnd_toEndOf="parent"/>
 </android.support.constraint.ConstraintLayout>
