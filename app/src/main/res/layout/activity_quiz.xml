@@ -16,8 +16,9 @@
             android:layout_marginStart="160dp"/>
     <fragment
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:name="com.example.assignment2.QuizQuestion1"
-            android:id="@+id/fragment"
+            android:layout_height="wrap_content" android:name="com.example.assignment2.QuizQuestion"
+            android:id="@+id/quizfragment"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="144dp" app:layout_constraintEnd_toEndOf="parent"/>
+            android:layout_marginTop="144dp" app:layout_constraintEnd_toEndOf="parent"
+            tools:layout="@layout/fragment_quiz_question"/>
 </android.support.constraint.ConstraintLayout>

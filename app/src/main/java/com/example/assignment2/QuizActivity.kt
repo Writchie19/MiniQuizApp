@@ -13,28 +13,33 @@ class QuizActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
+        Log.i("HRERE", "HERE?")
         Back_Button.setOnClickListener{
             val quizResultToPassBack = intent
             quizResultToPassBack.putExtra("result", 50)
             setResult(Activity.RESULT_CANCELED, quizResultToPassBack)
             finish()
         }
-        val fragments = this.supportFragmentManager
-        AnswerGroup.setOnCheckedChangeListener{ group, checkId->
-            when(checkId) {
-                R.id.Answer1 -> Log.i("TAG", "answer1")
-                R.id.Answer2 -> Log.i("TAG", "answer2")
-                R.id.Answer3 -> Log.i("TAG", "answer3")
-                R.id.Answer4 -> Log.i("TAG", "answer4")
-            }
-        }
-        val question = ArrayList<String>()
-        question[0] = "What's in my pocket?"
-        question[1] = "is it this answer?"
-        question[2] = "how about this one?"
-        question[3] = "must be this guy"
-        question[4] = "alksmdf"
-        val fragment = fragments.findFragmentById(R.id.fragment)
+//        AnswerGroup.setOnCheckedChangeListener{ group, checkId->
+//            when(checkId) {
+//                R.id.Answer1 -> Log.i("TAG", "answer1")
+//                R.id.Answer2 -> Log.i("TAG", "answer2")
+//                R.id.Answer3 -> Log.i("TAG", "answer3")
+//                R.id.Answer4 -> Log.i("TAG", "answer4")
+//            }
+//        }
+        val question = mutableListOf<String>()
+        question.add("What's in my pocket?")
+        question.add("is it this answer?")
+        question.add("how about this one?")
+        question.add("must be this guy")
+        question.add("alksmdf")
+        val fragments = supportFragmentManager
+        val fragmentTransaction = fragments.beginTransaction()
+        val fragment = QuizQuestion.create(question)
+        fragmentTransaction.replace(R.id.quizfragment, fragment)
+        fragmentTransaction.addToBackStack("QuizQuestion")
+        fragmentTransaction.commit()
         //fragment.setQuestion(question)
     }
 }
