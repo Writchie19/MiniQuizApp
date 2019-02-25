@@ -9,6 +9,7 @@ package com.example.assignment2
 import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_quiz.*
 import org.json.JSONObject
@@ -39,6 +40,9 @@ class QuizActivity : AppCompatActivity(), QuizFragmentResult {
 
         // This button will handle going to the next fragment
         Next_Button.setOnClickListener{onNext()}
+
+        // Hide the visibility of the next button until the user answer s the question
+        Next_Button.visibility = View.INVISIBLE
 
         // Note: A future solution would not do this and provide a much more scalable solution and not hard code five false's
         // The first false is ignored in order to match up the indices with the corresponding question
@@ -81,6 +85,7 @@ class QuizActivity : AppCompatActivity(), QuizFragmentResult {
                     Toast.makeText(this, "One Ring to Rule Them All", Toast.LENGTH_LONG).show()
                 }
             }
+            Next_Button.visibility = View.INVISIBLE
             // Begin the next fragment, which should be populated with the contents of the next question
             currentQuestionNumber++
             val question = getQuestion(currentQuestionNumber)
@@ -95,6 +100,7 @@ class QuizActivity : AppCompatActivity(), QuizFragmentResult {
 
     // The function to override that provides an interface for communication to the fragments, updates every radio button click
     override fun getResult(isCorrect: Boolean, qNumber: Int) {
+        Next_Button.visibility = View.VISIBLE
         currentResult = isCorrect
         currentQuestionNumber = qNumber
     }
