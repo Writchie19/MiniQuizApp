@@ -12,8 +12,6 @@
     <string name="quiz">Quiz</string>
     <string name="back">Back</string>
     <string name="next">Next</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="answer1">Answer1</string>
     <string name="answer2">Answer2</string>

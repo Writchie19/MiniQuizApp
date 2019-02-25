@@ -10,7 +10,7 @@
             android:layout_height="match_parent">
 
         <RadioGroup
-                android:layout_width="wrap_content"
+                android:layout_width="365dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
@@ -36,10 +36,11 @@
                 android:text="@string/question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/Question" android:textSize="24sp" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/Question" android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginBottom="20dp" app:layout_constraintBottom_toTopOf="@+id/AnswerGroup"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"/>
+                app:layout_constraintVertical_bias="1.0" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.025"/>
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

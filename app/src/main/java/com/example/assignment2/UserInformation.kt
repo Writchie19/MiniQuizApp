@@ -1,10 +1,16 @@
+/*
+CS 646
+William Ritchie
+Assignment 2
+2/24/19
+ */
 package com.example.assignment2
 
 import android.content.Context
-import android.util.Log
 import org.json.JSONObject
 import java.io.File
 
+// Used as keys to access the information inside of the file that holds the user's info
 private const val USERFILENAME = "UserInfo"
 private const val FIRSTNAMETAG = "First_Name"
 private const val LASTNAMETAG = "Last_Name"
@@ -23,9 +29,9 @@ class UserInformation {
 
     constructor(context : Context) {
         userFile = File(context.filesDir, USERFILENAME)
-        userFile.createNewFile()
+        userFile.createNewFile() // creates the file if it does not already exist, else does nothing
+        // If it is empty then init the values to empty strings, otherwise grab the users data
         if (userFile.readBytes().isNotEmpty()) {
-            // what if readText is not in JSON format?
             userInfo = JSONObject(userFile.readText())
             firstName = userInfo.get(FIRSTNAMETAG).toString()
             lastName = userInfo.get(LASTNAMETAG).toString()
@@ -49,15 +55,7 @@ class UserInformation {
         }
     }
 
-    fun readFromFile() {
-        userInfo = JSONObject(userFile.readText())
-        firstName = userInfo.get(FIRSTNAMETAG).toString()
-        lastName = userInfo.get(LASTNAMETAG).toString()
-        nickName = userInfo.get(NICKNAMETAG).toString()
-        age = userInfo.get(AGETAG).toString()
-        score = userInfo.get(SCORETAG).toString()
-    }
-
+    // Update the user's information
     fun update(newFirstName : String, newLastName : String, newNickName : String, newAge : String ) {
         firstName = newFirstName
         lastName = newLastName
@@ -87,7 +85,9 @@ class UserInformation {
     }
 
     fun getScore() : String {
-        return score
+        // return the score in a percentage format
+        val resultPercent = score.toFloat() * 100.0f / 4.0f
+        return resultPercent.toString()
     }
 
     fun setScore(newScore : String) {

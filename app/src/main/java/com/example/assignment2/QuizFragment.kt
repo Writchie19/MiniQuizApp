@@ -1,19 +1,21 @@
+/*
+CS 646
+William Ritchie
+Assignment 2
+2/24/19
+ */
 package com.example.assignment2
-
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_quiz_question.*
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+// Note: Using constants for an immediate solution for this assignment, future solution would include getting rid of these
+// and providing a much more scalable answer to handle varying number of questions
+// These constants are used to access map that gets passed to this fragment through the static constructor
 private const val QUESTION = "question"
 private const val ANSWER1 = "answer1"
 private const val ANSWER2 = "answer2"
@@ -24,16 +26,14 @@ private const val CORRECTANSWER = "correctAnswer"
 interface QuizFragmentResult {
     fun getResult(isCorrect : Boolean, qNumber: Int)
 }
-/**
- * A simple [Fragment] subclass.
- *
- */
+
 class QuizFragment : Fragment() {
     private var correctAnswer: String? = ""
     private var currentAnswer = 0
     private var questionResult = false
     private var qNumber = 0
 
+    // Static Consructor used to pass in arguments to the fragment from the activity that instaniated it
     companion object Factory {
         fun create(question: MutableMap<String,String>, qNumber: Int) : QuizFragment {
             val newFragment = QuizFragment()
@@ -56,6 +56,7 @@ class QuizFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_quiz_question, container, false)
     }
 
+    // This is where the input arguments are received through the bundle
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -69,6 +70,8 @@ class QuizFragment : Fragment() {
             qNumber = arguments?.getString("qNumber")!!.toInt()
         }
 
+        // Set the radio button listener, informs the activity per click, the activity only cares about whether the user
+        // got the right answer or not and who (i.e which question) the user is on
         AnswerGroup.setOnCheckedChangeListener{ group, checkId->
             when(checkId) {
                 R.id.Answer1 -> currentAnswer = 1
@@ -76,6 +79,8 @@ class QuizFragment : Fragment() {
                 R.id.Answer3 -> currentAnswer = 3
                 R.id.Answer4 -> currentAnswer = 4
             }
+
+            // Note android studio gives a warning here, but I don't like how there solution looks
             if (currentAnswer == correctAnswer?.toIntOrNull()) {
                 questionResult = true
             }
