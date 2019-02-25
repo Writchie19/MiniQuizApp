@@ -22,7 +22,7 @@ private const val ANSWER4 = "answer4"
 private const val CORRECTANSWER = "correctAnswer"
 
 interface QuizFragmentResult {
-    fun getResult(isCorrect : Boolean)
+    fun getResult(isCorrect : Boolean, qNumber: Int)
 }
 /**
  * A simple [Fragment] subclass.
@@ -32,14 +32,16 @@ class QuizFragment : Fragment() {
     private var correctAnswer: String? = ""
     private var currentAnswer = 0
     private var questionResult = false
+    private var qNumber = 0
 
     companion object Factory {
-        fun create(question: MutableMap<String,String>) : QuizFragment {
+        fun create(question: MutableMap<String,String>, qNumber: Int) : QuizFragment {
             val newFragment = QuizFragment()
             val args = Bundle()
             for ((Key,Value) in question) {
                 args.putString(Key, Value)
             }
+            args.putString("qNumber", qNumber.toString())
             newFragment.arguments = args
             return newFragment
         }
@@ -64,6 +66,7 @@ class QuizFragment : Fragment() {
             Answer3.text = arguments?.getString(ANSWER3)
             Answer4.text = arguments?.getString(ANSWER4)
             correctAnswer = arguments?.getString(CORRECTANSWER)
+            qNumber = arguments?.getString("qNumber")!!.toInt()
         }
 
         AnswerGroup.setOnCheckedChangeListener{ group, checkId->
@@ -80,7 +83,7 @@ class QuizFragment : Fragment() {
                 questionResult = false
             }
             val activity = activity as QuizFragmentResult
-            activity.getResult(questionResult)
+            activity.getResult(questionResult, qNumber)
         }
     }
 }

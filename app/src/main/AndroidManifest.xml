@@ -10,7 +10,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustPan"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".QuizActivity">
         </activity>

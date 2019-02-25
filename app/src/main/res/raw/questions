@@ -1,10 +1,10 @@
 {
   "question1": {
-    "question": "1. Where did 2018 rank in terms of Earth’s average surface temperature?",
-    "answer1": "First",
-    "answer2": "Fourth",
-    "answer3": "Eighth",
-    "answer4": "10th",
+    "question": "1. What's in my pocket?",
+    "answer1": "lint",
+    "answer2": "The Ring of Power",
+    "answer3": "nothing",
+    "answer4": "How can I know the answer to such a ridiculous question?",
     "correctAnswer": "2"
   },
   "question2": {

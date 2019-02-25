@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.JsonReader
 import android.util.Log
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_quiz.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -25,45 +26,45 @@ private const val CORRECTANSWER = "correctAnswer"
 
 class QuizActivity : AppCompatActivity(), QuizFragmentResult {
     private var currentQuestionNumber = 1
-    private var quizResult = 0
     private var currentResult = false
+    private lateinit var quizResults: ArrayList<Boolean>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
-        Log.i("HRERE", "HERE?")
         Next_Button.setOnClickListener{onNext()}
+        quizResults = arrayListOf(false,false,false,false,false)
         var fragments = supportFragmentManager
         var fragmentTransaction = fragments.beginTransaction()
         val question = getQuestion(currentQuestionNumber)
-        val fragment = QuizFragment.create(question)
+        val fragment = QuizFragment.create(question, currentQuestionNumber)
         fragmentTransaction.replace(R.id.quizfragment, fragment)
         fragmentTransaction.commit()
-//        AnswerGroup.setOnCheckedChangeListener{ group, checkId->
-//            when(checkId) {
-//                R.id.Answer1 -> Log.i("TAG", "answer1")
-//                R.id.Answer2 -> Log.i("TAG", "answer2")
-//                R.id.Answer3 -> Log.i("TAG", "answer3")
-//                R.id.Answer4 -> Log.i("TAG", "answer4")
-//            }
-//        }
-
     }
 
     private fun onNext() {
-        if (currentResult) {
-            quizResult++
-        }
+        quizResults[currentQuestionNumber] = currentResult
         if (4 == currentQuestionNumber) {
             val quizResultToPassBack = intent
+            var quizResult = 0
+            for (item in quizResults){
+                if (item) {
+                    quizResult++
+                }
+            }
             quizResultToPassBack.putExtra("result", quizResult)
             setResult(Activity.RESULT_OK, quizResultToPassBack)
             finish()
         }
         else {
+            if (1 == currentQuestionNumber) {
+                if (quizResults[currentQuestionNumber]) {
+                    Toast.makeText(this, "One Ring to Rule Them All", Toast.LENGTH_LONG).show()
+                }
+            }
             currentQuestionNumber++
             val question = getQuestion(currentQuestionNumber)
-            val fragment = QuizFragment.create(question)
+            val fragment = QuizFragment.create(question, currentQuestionNumber)
             var fragments = supportFragmentManager
             var fragmentTransaction = fragments.beginTransaction()
             fragmentTransaction.replace(R.id.quizfragment, fragment)
@@ -72,8 +73,10 @@ class QuizActivity : AppCompatActivity(), QuizFragmentResult {
         }
     }
 
-    override fun getResult(isCorrect: Boolean) {
+    override fun getResult(isCorrect: Boolean, qNumber: Int) {
         currentResult = isCorrect
+        currentQuestionNumber = qNumber
+
     }
 
     private fun getQuestion(questionNumber : Int) : MutableMap<String, String> {
