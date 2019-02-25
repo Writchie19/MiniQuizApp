@@ -8,15 +8,15 @@
         tools:context=".QuizActivity">
 
     <Button
-            android:text="@string/back"
+            android:text="@string/next"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:id="@+id/Back_Button" app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/Next_Button" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="412dp"
             android:layout_marginStart="160dp"/>
-    <fragment
+    <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:name="com.example.assignment2.QuizQuestion"
+            android:layout_height="wrap_content" android:name="com.example.assignment2.QuizFragment"
             android:id="@+id/quizfragment"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="144dp" app:layout_constraintEnd_toEndOf="parent"

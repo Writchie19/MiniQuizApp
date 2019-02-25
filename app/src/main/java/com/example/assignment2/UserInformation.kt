@@ -10,6 +10,7 @@ private const val FIRSTNAMETAG = "First_Name"
 private const val LASTNAMETAG = "Last_Name"
 private const val NICKNAMETAG = "Nick_Name"
 private const val AGETAG = "Age"
+private const val SCORETAG = "Score"
 
 class UserInformation {
     private val userFile : File
@@ -18,6 +19,7 @@ class UserInformation {
     private var lastName : String
     private var nickName : String
     private var age : String
+    private var score : String
 
     constructor(context : Context) {
         userFile = File(context.filesDir, USERFILENAME)
@@ -29,6 +31,7 @@ class UserInformation {
             lastName = userInfo.get(LASTNAMETAG).toString()
             nickName = userInfo.get(NICKNAMETAG).toString()
             age = userInfo.get(AGETAG).toString()
+            score = userInfo.get(SCORETAG).toString()
         }
         else {
             userInfo = JSONObject()
@@ -36,10 +39,12 @@ class UserInformation {
             lastName = ""
             nickName = ""
             age = ""
+            score = ""
             userInfo.put(FIRSTNAMETAG, firstName)
             userInfo.put(LASTNAMETAG, lastName)
             userInfo.put(NICKNAMETAG, nickName)
             userInfo.put(AGETAG, age)
+            userInfo.put(SCORETAG, score)
             userFile.writeText(userInfo.toString())
         }
     }
@@ -50,6 +55,7 @@ class UserInformation {
         lastName = userInfo.get(LASTNAMETAG).toString()
         nickName = userInfo.get(NICKNAMETAG).toString()
         age = userInfo.get(AGETAG).toString()
+        score = userInfo.get(SCORETAG).toString()
     }
 
     fun update(newFirstName : String, newLastName : String, newNickName : String, newAge : String ) {
@@ -78,5 +84,15 @@ class UserInformation {
 
     fun getAge() : String{
         return age
+    }
+
+    fun getScore() : String {
+        return score
+    }
+
+    fun setScore(newScore : String) {
+        score = newScore
+        userInfo.put(SCORETAG, score)
+        userFile.writeText(userInfo.toString())
     }
 }

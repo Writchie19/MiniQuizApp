@@ -11,6 +11,7 @@
     <string name="enter_your_information_then_take_a_quiz">Enter Your Information then Take a QUIZ!!</string>
     <string name="quiz">Quiz</string>
     <string name="back">Back</string>
+    <string name="next">Next</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -19,4 +20,5 @@
     <string name="answer3">Answer3</string>
     <string name="answer4">Answer4</string>
     <string name="question">Question</string>
+    <string name="result">Result</string>
 </resources>

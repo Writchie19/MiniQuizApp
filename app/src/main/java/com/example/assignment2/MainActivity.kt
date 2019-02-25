@@ -23,6 +23,12 @@ class MainActivity : AppCompatActivity() , OnEditorActionListener{
         setContentView(R.layout.activity_main)
         Age_Edit.setOnEditorActionListener(this)
         userInfo = UserInformation(this)
+        First_Name_Edit.setText(userInfo.getFirstName())
+        Last_Name_Edit.setText(userInfo.getLastName())
+        Nick_Name_Edit.setText(userInfo.getNickName())
+        Age_Edit.setText(userInfo.getAge())
+        Result.text = userInfo.getScore()
+
         Quiz_Button.setOnClickListener{
             updateUserInformation()
             val quizIntent = Intent(this, QuizActivity::class.java)
@@ -50,7 +56,6 @@ class MainActivity : AppCompatActivity() , OnEditorActionListener{
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.i("QUIZ", "HERE?")
         if (requestCode != QUIZREQUESTCODE) {
             Log.i("QUIZ", "Failed")
             return
@@ -59,6 +64,8 @@ class MainActivity : AppCompatActivity() , OnEditorActionListener{
             Activity.RESULT_OK -> {
                 val quizResult = data?.getIntExtra("result", -1)
                 Log.i("QUIZ", "Quiz Result: " + quizResult.toString())
+                userInfo.setScore(quizResult.toString())
+                Result.text = String.format("Quiz Result: " + quizResult.toString())
             }
             Activity.RESULT_CANCELED ->
                 Log.i("QUIZ", "cancel")
