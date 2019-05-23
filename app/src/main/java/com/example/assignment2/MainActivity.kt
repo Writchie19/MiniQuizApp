@@ -34,18 +34,29 @@ class MainActivity : AppCompatActivity() , OnEditorActionListener{
 
         userInfo = UserInformation(this)
 
+        Log.i("HOM", "MAIN AFTER INST BEFORE GET")
         // If there is already information on the user then populate that data to the respective edit views
         First_Name_Edit.setText(userInfo.getFirstName())
+        Log.i("HOM", "MAIN AFTER FIRSTNAME")
         Last_Name_Edit.setText(userInfo.getLastName())
+        Log.i("HOM", "MAIN AFTER LASTNAME")
         Nick_Name_Edit.setText(userInfo.getNickName())
+        Log.i("HOM", "MAIN AFTER NICKNAME")
         Age_Edit.setText(userInfo.getAge())
+        Log.i("HOM", "MAIN AFTER AGE")
         Result.text = String.format("Quiz Result: ${userInfo.getScore()}%%")
+        Log.i("HOM", "MAIN AFTER SCORE")
+
+        Log.i("HOM", "AFTER GET")
 
         Quiz_Button.setOnClickListener{
             updateUserInformation()
             val quizIntent = Intent(this, QuizActivity::class.java)
             startActivityForResult(quizIntent, QUIZREQUESTCODE)
         }
+
+        Log.i("HOM", "END OF MAIN")
+
     }
 
     // This is what gets called when the age_edit view finish's, essentially just hides the Keyboard

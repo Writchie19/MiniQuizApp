@@ -83,8 +83,7 @@ class QuizFragment : Fragment() {
             // Note android studio gives a warning here, but I don't like how there solution looks
             if (currentAnswer == correctAnswer?.toIntOrNull()) {
                 questionResult = true
-            }
-            else {
+            }            else {
                 questionResult = false
             }
             val activity = activity as QuizFragmentResult
