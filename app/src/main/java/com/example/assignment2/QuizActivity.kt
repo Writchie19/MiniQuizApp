@@ -123,8 +123,8 @@ class QuizActivity : AppCompatActivity(), QuizFragmentResult {
         var jsonString = ""
 
         // Format a json string that will become the input to a jsonobj, simple concatenation is desired because it will
-        // retain the appropriate JSON syntax with out adding any unnessary garbage, and it can thus become a convient input
-        // to a JSONObject which is convient to work with
+        // retain the appropriate JSON syntax with out adding any unnessary garbage, and it can thus become a convenient input
+        // to a JSONObject which is convenient to work with
         for (line in rawQuestion) {
             jsonString += line
         }
@@ -135,6 +135,7 @@ class QuizActivity : AppCompatActivity(), QuizFragmentResult {
         question[ANSWER2] = jsonObj.getJSONObject(qNum).getString(ANSWER2)
         question[ANSWER3] = jsonObj.getJSONObject(qNum).getString(ANSWER3)
         question[ANSWER4] = jsonObj.getJSONObject(qNum).getString(ANSWER4)
+
         question[CORRECTANSWER] = jsonObj.getJSONObject(qNum).getString(CORRECTANSWER)
 
         return question

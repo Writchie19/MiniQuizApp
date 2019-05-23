@@ -7,6 +7,7 @@ Assignment 2
 package com.example.assignment2
 
 import android.content.Context
+import android.util.Log
 import org.json.JSONObject
 import java.io.File
 
@@ -20,18 +21,22 @@ private const val SCORETAG = "Score"
 
 class UserInformation {
     private val userFile : File
-    private var userInfo : JSONObject
-    private var firstName : String
-    private var lastName : String
-    private var nickName : String
-    private var age : String
-    private var score : String
+    private var userInfo : JSONObject = JSONObject()
+    private var firstName : String = ""
+    private var lastName : String = ""
+    private var nickName : String = ""
+    private var age : String = ""
+    private var score : String = "0"
 
     constructor(context : Context) {
         userFile = File(context.filesDir, USERFILENAME)
-        userFile.createNewFile() // creates the file if it does not already exist, else does nothing
+
+        Log.i("HOM", "CREATE FILE" + userFile.createNewFile().toString()) // creates the file if it does not already exist, else does nothing
+
         // If it is empty then init the values to empty strings, otherwise grab the users data
+        Log.i("HOM", "READ TEXT: " + userFile.readBytes().isNotEmpty().toString())
         if (userFile.readBytes().isNotEmpty()) {
+            Log.i("HOM", "SHOULD NOT BE HERE")
             userInfo = JSONObject(userFile.readText())
             firstName = userInfo.get(FIRSTNAMETAG).toString()
             lastName = userInfo.get(LASTNAMETAG).toString()
@@ -45,7 +50,7 @@ class UserInformation {
             lastName = ""
             nickName = ""
             age = ""
-            score = ""
+            score = "0"
             userInfo.put(FIRSTNAMETAG, firstName)
             userInfo.put(LASTNAMETAG, lastName)
             userInfo.put(NICKNAMETAG, nickName)
@@ -57,15 +62,15 @@ class UserInformation {
 
     // Update the user's information
     fun update(newFirstName : String, newLastName : String, newNickName : String, newAge : String ) {
-        firstName = newFirstName
-        lastName = newLastName
-        nickName = newNickName
-        age = newAge
-        userInfo.put(FIRSTNAMETAG, firstName)
-        userInfo.put(LASTNAMETAG, lastName)
-        userInfo.put(NICKNAMETAG, nickName)
-        userInfo.put(AGETAG, age)
-        userFile.writeText(userInfo.toString())
+//        firstName = newFirstName
+//        lastName = newLastName
+//        nickName = newNickName
+//        age = newAge
+//        userInfo.put(FIRSTNAMETAG, firstName)
+//        userInfo.put(LASTNAMETAG, lastName)
+//        userInfo.put(NICKNAMETAG, nickName)
+//        userInfo.put(AGETAG, age)
+//        userFile.writeText(userInfo.toString())
     }
 
     fun getFirstName() : String{
